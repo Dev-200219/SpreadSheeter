@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <title>SpreadSheeter</title>
+</head>
+<body>
+    <div class="file-action-cont">
+        <div class="file-action">Home</div>
+        <div class="file-action">File</div>
+        <div class="file-action">Insert</div>
+        <div class="file-action">Layout</div>
+        <div class="file-action">Help</div>
+    </div>
+    <div class="cellprop-action-cont">
+        <span class="material-icons">content_copy</span>
+        <span class="material-icons">content_cut</span>
+        <span class="material-icons">content_paste</span>
+        <select class="font-family-prop">
+            <option value="arial">Arial</option>
+            <option value="monospace">Monospace</option>
+            <option value="sans-serif">Sans-Serif</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="cursive">Cursive</option>
+        </select>
+        <select class="font-size-prop">
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+        </select>
+        <span class="material-icons">format_bold</span>
+        <span class="material-icons">format_italic</span>
+        <span class="material-icons">format_underline</span>
+        <span class="material-icons">format_align_left</span>
+        <span class="material-icons">format_align_center</span>
+        <span class="material-icons">format_align_right</span>
+    </div>
+    <div class="formula-action-cont">
+        <input type="text" readonly class="address-bar"></input>
+        <img class="formula-icon" src="https://img.icons8.com/ios/50/formula-fx.png" alt="formula-fx"/>
+        <input type="text" class="formula-bar"></input>
+    </div>
+    <div class="grid-cont"></div>
+    <div class="sheets-action-cont">
+        <div class="add-icon">
+            <span class="material-icons">post_add</span>
+        </div>
+        <div class="sheet-folder-cont">
+            <div class="sheet-folder">Sheet1</div>
+        </div>
+    </div>
+
+
+    <script src="./script.js"></script>
+</body>
+</html>
