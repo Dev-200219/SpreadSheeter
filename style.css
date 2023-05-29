@@ -61,6 +61,7 @@ body {
 
 .address-bar {
     width: 5rem;
+    text-align: center;
 }
 
 .formula-action-cont > input {
@@ -113,4 +114,69 @@ body {
 
 .grid-cont {
     height: calc(100vh - (12rem));
+    position: relative;
+    overflow: scroll;
+}
+
+.top-left-dummy {
+    height: 2rem;
+    width: 2rem;
+    background-color: gray;
+    position: fixed;
+    z-index: 5;
+}
+
+.row-address-cont {
+    position: sticky;
+    top: 2rem;
+    left: 0;
+    z-index: 2;
+    width: 2rem;
+}
+
+.row-address {
+    height: 2rem;
+    width: 2rem;
+    border: 1px solid #dfe4ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ecf0f1;
+}
+
+.cells-cont {
+    position: absolute;
+    left: 2rem;
+    top: 0;
+}
+
+.col-address-cont {
+    height: 2rem;
+    display: flex;
+    position: sticky;
+    top: 0;
+    left: 2rem;
+    z-index: 3;
+}
+
+.col-address {
+    height: 2rem;
+    width: 5rem;
+    border: 1px solid #dfe4ea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ecf0f1;
+}
+
+.row-container {
+    display: flex;
+}
+
+.cell {
+    height: 2rem;
+    width: 5rem;
+    border: 1px solid #dfe4ea;
+    outline: none;
+    padding: 0.5rem;
 }
