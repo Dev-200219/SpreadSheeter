@@ -31,6 +31,7 @@ body {
 .cellprop-action-cont > * {
     display: inline-block;
     margin-right: 1rem;
+    cursor: pointer;
 }
 
 .font-family-prop {
@@ -179,4 +180,19 @@ body {
     border: 1px solid #dfe4ea;
     outline: none;
     padding: 0.5rem;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.color-prop {
+    position: relative;
+}
+
+.color-prop > input {
+    position: absolute;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
