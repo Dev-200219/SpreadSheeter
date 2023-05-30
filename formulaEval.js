@@ -20,6 +20,14 @@ formulaBar.addEventListener('keypress', (e) => {
     let formula = formulaBar.value;
     let address = addressBar.value;
     if(e.key === 'Enter' && formula && address) {
+        addNewDependenciesToGraph(formula, address);
+        if(isGraphCyclic()) {
+            alert('Cyclic Relationship Detected');
+            formulaBar.value = "";
+            removeDependenciesFromGraph(formula, address);
+            return;
+        }
+
         removeOldChildParentDependencies(address);
         addNewChildParentDependencies(formula, address)
         let evaluatedValue = evaluateFormula(formula);
@@ -28,12 +36,38 @@ formulaBar.addEventListener('keypress', (e) => {
     }
 })
 
+function removeDependenciesFromGraph(formula, childCellAddress) {
+    let encodedFormula = formula.split(' ');
+
+    for(let i = 0; i < encodedFormula.length; i++) {
+        let firstCharCode = encodedFormula[i].charCodeAt(0);
+
+        if(firstCharCode >= 65 && firstCharCode <= 90) {
+            let {row, col} = getCellRowAndCol(encodedFormula[i]);
+            graph[row][col].pop();
+        }
+    }
+}
+
+function addNewDependenciesToGraph(formula, childCellAddress) {
+    let encodedFormula = formula.split(' ');
+
+    for(let i = 0; i < encodedFormula.length; i++) {
+        let firstCharCode = encodedFormula[i].charCodeAt(0);
+
+        if(firstCharCode >= 65 && firstCharCode <= 90) {
+            let {row, col} = getCellRowAndCol(encodedFormula[i]);
+            graph[row][col].push(childCellAddress);
+        }
+    }
+}
+
 function removeOldChildParentDependencies(address) {
     let {row, col} = getCellRowAndCol(address);
     let cellObj = sheetDB[row][col];
     let formula = cellObj.formula;
     let encodedFormula = formula.split(' ');
-    
+
     for(let i = 0; i < encodedFormula.length; i++) {
         let firstCharCode = encodedFormula[i].charCodeAt(0);
 
@@ -107,4 +141,3 @@ function updateUIAndStorage(address, evalValue, formula) {
     cellProp.value = evalValue;
     cellProp.formula = formula;
 }
-

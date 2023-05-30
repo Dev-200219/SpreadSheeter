@@ -1,0 +1,63 @@
+let graph = [];
+
+for(let i = 0; i < rows; i++) {
+    let row = [];
+    for(let j = 0; j < cols; j++) {
+        row.push([]);
+    }
+
+    graph.push(row);
+}
+
+//true -> cycle is present
+//false -> cycle is absent
+function isGraphCyclic() {
+    let visited = [];
+    let dfsVisited = [];
+    
+    for(let i = 0; i < rows; i++) {
+        let visRow = [];
+        let dfsVisRow = [];
+        for(let j = 0; j < cols; j++) {
+            visRow.push(false);
+            dfsVisRow.push(false);
+        }
+        
+        visited.push(visRow);
+        dfsVisited.push(dfsVisRow);
+    }
+
+    for(let i = 0; i < rows; i++) {
+        for(let j = 0; j < cols; j++) {
+            //checking cycle for each component
+            if(!visited[i][j] && dfs(i, j, visited, dfsVisited)) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+//true -> cycle is present
+//false -> cycle is absent
+function dfs(i, j, visited, dfsVisited) {
+    visited[i][j] = true;
+    dfsVisited[i][j] = true;
+
+    for(let c = 0; c < graph[i][j].length; c++) {
+        let children = graph[i][j][c];
+        let {row, col} = getCellRowAndCol(children);
+
+        if(!visited[row][col]) {
+            if(dfs(row, col, visited, dfsVisited))
+            return true;
+        }
+        else if(visited[row][col] && dfsVisited[row][col]) {
+            return true;
+        }
+    }
+
+    dfsVisited[i][j] = false;
+    return false;
+}
