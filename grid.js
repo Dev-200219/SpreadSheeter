@@ -13,8 +13,12 @@ for(let i = 0; i < rows; i++) {
             alignment : "left",
             fontFamily : "arial",
             fontSize : 14,
-            textColor : null,
-            cellColor : null
+            textColor : "#000000",
+            cellColor : null,
+            value : "",
+            formula : "",
+            children : [],
+            parent : []
         }
 
         rowSheet.push(prop);
@@ -38,6 +42,7 @@ let fontFamilyInput = document.querySelector('.font-family-prop');
 let fontSizeInput = document.querySelector('.font-size-prop');
 let textColorPicker = document.querySelector('.text-color-picker');
 let cellColorPicker = document.querySelector('.cell-color-picker');
+let formulaBar = document.querySelector('.formula-bar');
 let activeColorProp = "#d1d8e0";
 let inactiveColorProp = "#ecf0f1";
 
@@ -88,6 +93,8 @@ for(let i = 0; i < rows; i++) {
             fontSizeInput.value = cellObj.fontSize;
             textColorPicker.value = (cellObj.textColor) ? cellObj.textColor : "#000000";
             cellColorPicker.value = (cellObj.cellColor) ? cellObj.cellColor : "transparent";
+            formulaBar.value = cellObj.formula;
+            cell.value = cellObj.value;
         })
 
         rowContainer.append(cell);
