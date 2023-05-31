@@ -30,8 +30,10 @@ function isGraphCyclic() {
     for(let i = 0; i < rows; i++) {
         for(let j = 0; j < cols; j++) {
             //checking cycle for each component
-            if(!visited[i][j] && dfs(i, j, visited, dfsVisited)) {
-                return true;
+            if(!visited[i][j]) {
+                let response =  dfs(i, j, visited, dfsVisited);
+
+                if(response) return response;
             }
         }
     }
@@ -50,11 +52,12 @@ function dfs(i, j, visited, dfsVisited) {
         let {row, col} = getCellRowAndCol(children);
 
         if(!visited[row][col]) {
-            if(dfs(row, col, visited, dfsVisited))
-            return true;
+            let response = dfs(row, col, visited, dfsVisited);
+            
+            if(response) return response;
         }
         else if(visited[row][col] && dfsVisited[row][col]) {
-            return true;
+            return [row, col];
         }
     }
 

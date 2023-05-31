@@ -15,6 +15,10 @@ body {
     padding-left: 0.5rem;
 }
 
+.file-action-cont > * {
+    cursor: pointer;
+}
+
 .file-action {
     margin: 0.5rem;
     color: #f1f2f6;
@@ -63,6 +67,7 @@ body {
 .address-bar {
     width: 5rem;
     text-align: center;
+    cursor: pointer;
 }
 
 .formula-action-cont > input {

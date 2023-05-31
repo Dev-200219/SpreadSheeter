@@ -16,13 +16,21 @@ for(let i = 0; i < rows; i++) {
     }
 }
 
-formulaBar.addEventListener('keypress', (e) => {
+formulaBar.addEventListener('keypress', async (e) => {
     let formula = formulaBar.value;
     let address = addressBar.value;
     if(e.key === 'Enter' && formula && address) {
         addNewDependenciesToGraph(formula, address);
-        if(isGraphCyclic()) {
-            alert('Cyclic Relationship Detected');
+        let startPoint = isGraphCyclic();
+        if(startPoint) {
+            let response = confirm('Cyclic Relationship Detected. Do you want to trace it?');
+
+            while(response) {
+                //using promises with async await so, the code is not further executed till the user has seen the cycle path as many times as he wants, otherwise, the code will just flow and we will again get confirmation request
+                await traceCycle(startPoint);
+                response = confirm('Cyclic Relationship Detected. Do you want to trace it again?');
+            }
+
             formulaBar.value = "";
             removeDependenciesFromGraph(formula, address);
             return;
