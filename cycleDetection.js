@@ -1,4 +1,7 @@
+let allSheetsGraph = [];
 let graph = [];
+
+/*
 
 for(let i = 0; i < rows; i++) {
     let row = [];
@@ -8,10 +11,11 @@ for(let i = 0; i < rows; i++) {
 
     graph.push(row);
 }
+*/
 
 //true -> cycle is present
 //false -> cycle is absent
-function isGraphCyclic() {
+function isGraphCyclic(graph) {
     let visited = [];
     let dfsVisited = [];
     
@@ -31,7 +35,7 @@ function isGraphCyclic() {
         for(let j = 0; j < cols; j++) {
             //checking cycle for each component
             if(!visited[i][j]) {
-                let response =  dfs(i, j, visited, dfsVisited);
+                let response =  dfs(graph, i, j, visited, dfsVisited);
 
                 if(response) return response;
             }
@@ -43,7 +47,7 @@ function isGraphCyclic() {
 
 //true -> cycle is present
 //false -> cycle is absent
-function dfs(i, j, visited, dfsVisited) {
+function dfs(graph, i, j, visited, dfsVisited) {
     visited[i][j] = true;
     dfsVisited[i][j] = true;
 
@@ -52,7 +56,7 @@ function dfs(i, j, visited, dfsVisited) {
         let {row, col} = getCellRowAndCol(children);
 
         if(!visited[row][col]) {
-            let response = dfs(row, col, visited, dfsVisited);
+            let response = dfs(graph, row, col, visited, dfsVisited);
             
             if(response) return response;
         }

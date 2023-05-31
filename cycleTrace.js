@@ -6,7 +6,7 @@ function delayForColorToSee() {
     })
 }
 
-async function traceCycle(startPoint) {
+async function traceCycle(graph, startPoint) {
     let visited = [];
     let dfsVisited = [];
     
@@ -22,11 +22,11 @@ async function traceCycle(startPoint) {
         dfsVisited.push(dfsVisRow);
     }
 
-    let response = await traceCycleDFS(startPoint[0], startPoint[1], visited, dfsVisited);
+    let response = await traceCycleDFS(graph, startPoint[0], startPoint[1], visited, dfsVisited);
     return Promise.resolve(response);
 }
 
-async function traceCycleDFS(i, j, visited, dfsVisited) {
+async function traceCycleDFS(graph, i, j, visited, dfsVisited) {
     visited[i][j] = true;
     dfsVisited[i][j] = true;
 
@@ -40,7 +40,7 @@ async function traceCycleDFS(i, j, visited, dfsVisited) {
         let {row, col} = getCellRowAndCol(children);
 
         if(!visited[row][col]) {
-            let isCycle = await traceCycleDFS(row, col, visited, dfsVisited);
+            let isCycle = await traceCycleDFS(graph, row, col, visited, dfsVisited);
 
             if(isCycle) {
                 currCell.style.backgroundColor = 'transparent';

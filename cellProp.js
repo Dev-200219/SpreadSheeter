@@ -1,3 +1,40 @@
+let allSheetsDB = [];
+let sheetDB = [];
+
+for(let i = 0; i < rows; i++) {
+    for(let j = 0; j < cols; j++) {
+        let cell = document.querySelector("[rid = '" + i + "'][cid = '" + j + "']");
+        applyEventListenerOnCell(cell, i, j);
+    }
+}
+
+function applyEventListenerOnCell(cell, i, j) {
+    cell.addEventListener('click', (e) => {
+        let address = `${String.fromCharCode(j + 65)}${i + 1}`;
+        addressBar.value = address;
+        let cellObj = sheetDB[i][j];
+
+        //making changes to UI using the properties of the clicked cell
+        boldBtn.style.backgroundColor = (cellObj.isBold) ? activeColorProp : inactiveColorProp;
+        italicBtn.style.backgroundColor = (cellObj.isItalic) ? activeColorProp : inactiveColorProp;
+        underlineBtn.style.backgroundColor = (cellObj.isUnderline) ? activeColorProp : inactiveColorProp;
+        leftAlign.style.backgroundColor = (cellObj.alignment === 'left') ? activeColorProp : inactiveColorProp;
+        centerAlign.style.backgroundColor = (cellObj.alignment === 'center') ? activeColorProp : inactiveColorProp;
+        rightAlign.style.backgroundColor = (cellObj.alignment === 'right') ? activeColorProp : inactiveColorProp;
+        fontFamilyInput.value = cellObj.fontFamily;
+        fontSizeInput.value = cellObj.fontSize;
+        textColorPicker.value = (cellObj.textColor) ? cellObj.textColor : "#000000";
+        cellColorPicker.value = (cellObj.cellColor) ? cellObj.cellColor : "transparent";
+        formulaBar.value = cellObj.formula;
+        cell.innerText = cellObj.value;
+    })
+}
+
+{
+    let sheetAddBtn = document.querySelector('.add-icon');
+    sheetAddBtn.click();
+}
+
 //to get correct row and column number of the clicked cell
 function getCellRowAndCol(cellAddress) {
     let row = Number(cellAddress.substring(1)) - 1;
