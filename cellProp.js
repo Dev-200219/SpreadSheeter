@@ -27,6 +27,14 @@ function applyEventListenerOnCell(cell, i, j) {
         cellColorPicker.value = (cellObj.cellColor) ? cellObj.cellColor : "transparent";
         formulaBar.value = cellObj.formula;
         cell.innerText = cellObj.value;
+        cell.style.backgroundColor = (cellObj.cellColor) ? cellObj.cellColor : "transparent";
+        cell.style.color = (cellObj.textColor) ? cellObj.textColor : "#000000";
+        cell.style.textAlign = cellObj.alignment;
+        cell.style.fontWeight = (cellObj.isBold) ? "bold" : "normal";
+        cell.style.fontStyle = (cellObj.isItalic) ? 'italic' : 'normal';
+        cell.style.textDecoration = (cellObj.isUnderline) ? 'underline' : '';
+        cell.style.fontFamily = cellObj.fontFamily;
+        cell.style.fontSize = `${cellObj.fontSize}px`;
     })
 }
 
