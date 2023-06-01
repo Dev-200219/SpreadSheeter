@@ -12,7 +12,8 @@ body {
     background-color: #218c74;
     display: flex;
     align-items: flex-end;
-    padding-left: 0.5rem;
+    padding-left: 0.75rem;
+    user-select: none;
 }
 
 .file-action-cont > * {
@@ -20,8 +21,18 @@ body {
 }
 
 .file-action {
-    margin: 0.5rem;
+    margin-right: 0.5rem;
     color: #f1f2f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 3rem;
+}
+
+.active-file-action {
+    color: #218c74;
+    background-color: #f1f2f6;
 }
 
 .cellprop-action-cont {
@@ -30,6 +41,7 @@ body {
     display: flex;
     align-items: center;
     padding-left: 1rem;
+    user-select: none;
 }
 
 .cellprop-action-cont > * {
@@ -204,6 +216,11 @@ body {
     padding: 0.5rem;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
+    overflow: scroll;
+}
+
+.cell::-webkit-scrollbar {
+    display: none;
 }
 
 .color-prop {

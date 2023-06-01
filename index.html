@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link type="image/png" sizes="96x96" rel="icon" href="./icons8-spreadsheet-color-96.png">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <title>SpreadSheeter</title>
@@ -12,7 +13,7 @@
 <body>
     <div class="file-action-cont">
         <div class="file-action">Home</div>
-        <div class="file-action">File</div>
+        <div class="file-action active-file-action">File</div>
         <div class="file-action">Insert</div>
         <div class="file-action">Layout</div>
         <div class="file-action">Help</div>
@@ -60,7 +61,7 @@
     </div>
     <div class="formula-action-cont">
         <input type="text" readonly class="address-bar"></input>
-        <img class="formula-icon" src="https://img.icons8.com/ios/50/formula-fx.png" alt="formula-fx"/>
+        <img class="formula-icon" src="https://img.icons8.com/ios/50/formula-fx.png" alt="formula-fx" style="user-select: none;"/>
         <input type="text" class="formula-bar"></input>
     </div>
     <div class="grid-cont">

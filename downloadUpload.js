@@ -18,12 +18,13 @@ uploadBtn.addEventListener('click', (e) => {
     
     input.addEventListener('change', (e) => {
         let filesToBeRead = input.files[0];
+        //provided by browser to read the input files
         let fr = new FileReader();
         fr.readAsText(filesToBeRead);
 
         fr.addEventListener('load', (e) => {
             let result = JSON.parse(fr.result);
-            
+
             sheetAddBtn.click();
             sheetDB = result[0];
             graph = result[1];
