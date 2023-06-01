@@ -49,7 +49,7 @@ function updateSheetIndexes() {
     for(let i = 0; i < allSheetFolders.length; i++) {
         allSheetFolders[i].setAttribute('id', i);
         let sheetContent = allSheetFolders[i].querySelector('.sheet-content');
-        sheetContent.innerText = `Sheet ${i + 1}`;
+        sheetContent.textContent = `Sheet ${i + 1}`;
     }
 
     allSheetFolders[0].click();

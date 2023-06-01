@@ -51,7 +51,7 @@ let inactiveColorProp = "#ecf0f1";
 for(let i = 1; i <= rows; i++) {
     let rowAdd = document.createElement('div');
     rowAdd.classList.add('row-address');
-    rowAdd.innerText = i;
+    rowAdd.textContent = i;
     rowAddressCont.appendChild(rowAdd);
 }
 
@@ -59,7 +59,7 @@ for(let i = 1; i <= rows; i++) {
 for(let i = 0; i < cols; i++) {
     let colAdd = document.createElement('div');
     colAdd.classList.add('col-address');
-    colAdd.innerText = String.fromCharCode(i + 65);
+    colAdd.textContent = String.fromCharCode(i + 65);
     colAddressCont.appendChild(colAdd);
 }
 

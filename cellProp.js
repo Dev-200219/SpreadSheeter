@@ -26,7 +26,7 @@ function applyEventListenerOnCell(cell, i, j) {
         textColorPicker.value = (cellObj.textColor) ? cellObj.textColor : "#000000";
         cellColorPicker.value = (cellObj.cellColor) ? cellObj.cellColor : "transparent";
         formulaBar.value = cellObj.formula;
-        cell.innerText = cellObj.value;
+        cell.textContent = cellObj.value;
         cell.style.backgroundColor = (cellObj.cellColor) ? cellObj.cellColor : "transparent";
         cell.style.color = (cellObj.textColor) ? cellObj.textColor : "#000000";
         cell.style.textAlign = cellObj.alignment;

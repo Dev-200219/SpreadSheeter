@@ -7,10 +7,10 @@ for(let i = 0; i < rows; i++) {
             let {row, col} = getCellRowAndCol(address);
             let cell = getCellElement(row, col);
 
-            if(cell.innerText == sheetDB[row][col].value) return;
+            if(cell.textContent == sheetDB[row][col].value) return;
 
             removeOldChildParentDependencies(address);
-            updateUIAndStorage(address, cell.innerText, "");
+            updateUIAndStorage(address, cell.textContent, "");
             updateChildrenCellValues(address);
         })
     }
@@ -145,7 +145,7 @@ function updateUIAndStorage(address, evalValue, formula) {
     let {row, col} = getCellRowAndCol(address);
     let cellElement = getCellElement(row, col);
     let cellProp = sheetDB[row][col];
-    cellElement.innerText = evalValue;
+    cellElement.textContent = evalValue;
     cellProp.value = evalValue;
     cellProp.formula = formula;
 }
