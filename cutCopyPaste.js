@@ -35,7 +35,7 @@ for(let i = 0; i < rows; i++) {
 
 function clearCellsUI() {
     let[cell1, cell2] = selectedCells;
-    
+
     if(cell1) {
         let cellElement = document.querySelector("[rid = '" + cell1[0] + "'][cid = '" + cell1[1] + "']");
         cellElement.style.border = '1px solid #dfe4ea';
@@ -55,6 +55,8 @@ copyBtn.addEventListener('click', (e) => {
         return;
     }
 
+    selectedCellsData = [];
+
     for(let i = selectedCells[0][0]; i <= selectedCells[1][0]; i++) {
         let rowData = [];
         
@@ -69,7 +71,7 @@ copyBtn.addEventListener('click', (e) => {
 })
 
 pasteBtn.addEventListener('click', (e) => {
-    if(selectedCells.length < 2) {
+    if(selectedCells.length < 2 || selectedCellsData.length === 0) {
         alert('Select data to be pasted!!');
         clearCellsUI();
         selectedCells = [];
@@ -97,4 +99,39 @@ pasteBtn.addEventListener('click', (e) => {
 
     selectedCellsData = [];
     selectedCells = [];
+})
+
+cutBtn.addEventListener('click', (e)=>{
+    if(!selectedCells || selectedCells.length != 2) {
+        alert('Please select range of cells to cut');
+        clearCellsUI();
+        selectedCells = [];
+        return;
+    }
+
+    selectedCellsData = [];
+
+    for(let i = selectedCells[0][0]; i <= selectedCells[1][0]; i++) {
+        let rowData = [];
+        for(let j = selectedCells[0][1]; j <= selectedCells[1][1]; j++) {
+            let cell = document.querySelector("[rid = '" + i + "'][cid = '" + j + "']");
+
+            rowData.push({...sheetDB[i][j]});
+            sheetDB[i][j].isBold = false;
+            sheetDB[i][j].isUnderline = false;
+            sheetDB[i][j].isItalic = false;
+            sheetDB[i][j].alignment = 'left';
+            sheetDB[i][j].fontFamily = 'arial';
+            sheetDB[i][j].fontSize = 14;
+            sheetDB[i][j].textColor = '#000000';
+            sheetDB[i][j].cellColor = null;
+            sheetDB[i][j].value = "";
+
+            cell.click();
+        }
+
+        selectedCellsData.push(rowData);
+    }
+
+    clearCellsUI();
 })
